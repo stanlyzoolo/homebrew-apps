@@ -5,33 +5,43 @@
 class Keepkit < Formula
   desc "Lightweight TUI for tracking versions of your favorite tools"
   homepage "https://github.com/stanlyzoolo/keepkit"
-  version "0.1.0"
+  version "0.2.0"
   license "MIT"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/stanlyzoolo/keepkit/releases/download/v0.1.0/keepkit_v0.1.0_macos_arm64.tar.gz"
-      sha256 "9c245fe80cc5fb8be6a5cf3c2e915139fe8e7bd6e73a489ced0450f6f8023876"
-    end
     if Hardware::CPU.intel?
-      url "https://github.com/stanlyzoolo/keepkit/releases/download/v0.1.0/keepkit_v0.1.0_macos_x86_64.tar.gz"
-      sha256 "c0e7c857f8680a457343f57832d5758b7aa79c31b9eafc7beeb386f821652632"
+      url "https://github.com/stanlyzoolo/keepkit/releases/download/v0.2.0/keepkit_v0.2.0_macos_x86_64.tar.gz"
+      sha256 "4dbc0969d3063a6eb4de9c467dd1169343441fac3806679543a3a03a9f01cbaa"
+
+      define_method(:install) do
+        bin.install "keepkit"
+      end
+    end
+    if Hardware::CPU.arm?
+      url "https://github.com/stanlyzoolo/keepkit/releases/download/v0.2.0/keepkit_v0.2.0_macos_arm64.tar.gz"
+      sha256 "62a3986b46af8d0ca2047b9b1ad67aec5d07db3efaab5659f206c912ae1fdaca"
+
+      define_method(:install) do
+        bin.install "keepkit"
+      end
     end
   end
 
   on_linux do
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/stanlyzoolo/keepkit/releases/download/v0.1.0/keepkit_v0.1.0_linux_arm64.tar.gz"
-      sha256 "0e752bc81d24172a102371bbaed7f14caaeb6a053dae54066f6953fd5ae5b306"
-    end
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/stanlyzoolo/keepkit/releases/download/v0.1.0/keepkit_v0.1.0_linux_x86_64.tar.gz"
-      sha256 "4b305280b1055b3dcf319284ae147e3502d6e57153e03bb5587d89c03d4d320f"
+      url "https://github.com/stanlyzoolo/keepkit/releases/download/v0.2.0/keepkit_v0.2.0_linux_x86_64.tar.gz"
+      sha256 "08f62bab74caf05625532d4e1e596f587c555d5351353dbca5e3edd66d83c557"
+      define_method(:install) do
+        bin.install "keepkit"
+      end
     end
-  end
-
-  def install
-    bin.install "keepkit"
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/stanlyzoolo/keepkit/releases/download/v0.2.0/keepkit_v0.2.0_linux_arm64.tar.gz"
+      sha256 "1e238709c16de506de5960d04edaa67cc4c078f5b9295981aa728798ee979240"
+      define_method(:install) do
+        bin.install "keepkit"
+      end
+    end
   end
 
   test do
